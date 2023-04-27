@@ -16,7 +16,7 @@ class QueryGenerator
     {
         $per_page = $request->per_page ?  $request->per_page : 'all';
         $filter = $request->filter ? $request->filter : [];
-        $sort = $request->sort ? $request->sort : 'created_at,ASC';
+        $sort = $request->sort ? $request->sort : 'id,ASC';
         $join = $request->join ? $request->join : '';
         $count = $request->count ? $request->count : '';
         $whereHas = $request->where_has ? $request->where_has : [];

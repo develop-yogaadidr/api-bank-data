@@ -81,7 +81,7 @@ class Controller extends BaseController
 
     protected function sendEmail(MailParameter $parameter)
     {
-        Mail::to($parameter->id)->send(new SendEmail($parameter->maildata, $parameter->subject));
+        Mail::to($parameter->to)->send(new SendEmail($parameter->maildata, $parameter->subject));
     }
 
     protected function sendNotification(NotificationParameter $parameter)

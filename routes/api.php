@@ -20,28 +20,11 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group(['prefix' => 'api'], function ($router) {
-    $router->post('reset-password', 'UserController@resetPassword');
-    $router->post('reset-password/validate', 'UserController@validateResetPassword');
-    $router->put('change-password', 'UserController@changePassword');
-    $router->post('test-notification/token', 'TestController@testUsingToken');
-    $router->post('test-notification/topic', 'TestController@testUsingTopics');
-
-    $router->group(['prefix' => 'auth'], function ($auth){
-        $auth->post('login', 'AuthController@login');
-        $auth->post('logout', 'AuthController@logout');
-        $auth->post('refresh', 'AuthController@refresh');
-        $auth->post('user-profile', 'AuthController@me');
-    });
-
-    $router->group(['prefix' => 'users'], function ($user){
-        $user->get('/', 'UserController@getAll');
-        $user->get('/{id}', 'UserController@getById');
-        $user->post('/register', 'UserController@create');
-        $user->post('/photo', 'UserController@updatePhoto');
-        $user->put('/fcm-token', 'UserController@updateFcmToken');
-        $user->post('/fcm-token/revoke', 'UserController@revokeFcmToken');
-        $user->put('/password', 'UserController@updatePassword');
-        $user->put('/{id}', 'UserController@update');
-        $user->delete('/{id}', 'UserController@delete');
+    $router->group(['prefix' => 'pasien'], function ($user){
+        $user->get('/', 'PasienController@getAll');
+        $user->get('/{nik}', 'PasienController@getByNik');
+        $user->post('/', 'PasienController@create');
+        $user->post('/{nik}', 'PasienController@updateByNik');
+        $user->delete('/{nik}', 'PasienController@deleteByNik');
     });
 });
